@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our Private Space ❤️</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -42,6 +43,7 @@
             .app-container { height: 90vh; border-radius: 25px; }
         }
 
+        /* Login Screen */
         #login-screen {
             position: absolute;
             inset: 0;
@@ -59,10 +61,11 @@
         .heart-icon { font-size: 50px; color: var(--primary-pink); margin-bottom: 20px; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        .login-input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 15px; border: 2px solid #eee; outline: none; }
+        .login-input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 15px; border: 2px solid #eee; outline: none; font-size: 1rem; }
+        .login-input:focus { border-color: var(--primary-pink); }
         .start-btn { background: var(--primary-pink); color: white; padding: 15px 40px; border-radius: 30px; border: none; font-weight: 600; cursor: pointer; width: 100%; margin-top: 15px; box-shadow: 0 5px 15px rgba(255, 126, 179, 0.4); }
 
-        /* Header with Call Buttons */
+        /* Header */
         .header {
             padding: 15px 20px;
             background: white;
@@ -75,21 +78,25 @@
         }
 
         .call-btns { display: flex; gap: 15px; }
-        .call-btn { cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .call-btn { cursor: pointer; font-size: 1.3rem; transition: 0.3s; }
         .call-btn:hover { transform: scale(1.2); }
 
+        /* Chat Window */
         #chat-window { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #fdfbfb; }
 
-        .msg-bubble { max-width: 80%; padding: 12px 16px; border-radius: 20px; font-size: 0.95rem; animation: slideIn 0.3s ease; position: relative; }
+        .msg-bubble { max-width: 80%; padding: 12px 16px; border-radius: 20px; font-size: 0.95rem; position: relative; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .sent { align-self: flex-end; background: var(--primary-pink); color: white; border-bottom-right-radius: 4px; }
         .received { align-self: flex-start; background: var(--receiver-bg); color: var(--text-dark); border-bottom-left-radius: 4px; border: 1px solid #eee; }
         .user-tag { font-size: 0.65rem; display: block; margin-bottom: 3px; font-weight: 600; opacity: 0.8; }
 
+        /* Input Area */
         .input-box { padding: 15px; background: white; display: flex; gap: 10px; border-top: 1px solid #eee; }
         #message-input { flex: 1; padding: 12px 18px; border-radius: 25px; border: 1px solid #eee; outline: none; background: #f9f9f9; }
-        #send-btn { background: var(--primary-pink); border: none; width: 45px; height: 45px; border-radius: 50%; color: white; cursor: pointer; }
+        #send-btn { background: var(--primary-pink); border: none; width: 45px; height: 45px; border-radius: 50%; color: white; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
 
-        /* Video Call Overlay */
+        /* Call Screen Overlay */
         #call-screen {
             position: absolute;
             inset: 0;
@@ -103,63 +110,70 @@
 
         #remote-video { width: 100%; height: 100%; object-fit: cover; }
         #local-video { 
-            width: 120px; height: 160px; 
+            width: 100px; height: 140px; 
             position: absolute; top: 20px; right: 20px; 
-            border-radius: 15px; object-fit: cover; 
-            border: 2px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: 12px; object-fit: cover; 
+            border: 2px solid white; background: #222;
         }
 
         .call-controls {
             position: absolute; bottom: 40px; width: 100%;
-            display: flex; justify-content: center; gap: 30px;
+            display: flex; justify-content: center; gap: 20px;
         }
 
         .end-call-btn {
-            background: #ff4757; color: white; width: 60px; height: 60px;
-            border-radius: 50%; border: none; font-size: 1.5rem; cursor: pointer;
+            background: #ff4757; color: white; width: 65px; height: 65px;
+            border-radius: 50%; border: none; font-size: 1.8rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
         }
     </style>
 </head>
 <body>
 
 <div class="app-container">
+    <!-- Login Screen -->
     <div id="login-screen">
         <div class="heart-icon">💖</div>
-        <h2>Our Secret Chat</h2>
+        <h2 style="color: #444; margin-bottom: 5px;">Our Secret Chat</h2>
         <p style="color: #888; font-size: 0.8rem; margin-bottom: 20px;">Private, Safe & Beautiful</p>
+        
         <input type="text" id="username" class="login-input" placeholder="What's your name?">
         <input type="text" id="love-code" class="login-input" placeholder="Secret Code (Same for both)">
         <button class="start-btn" onclick="connectChat()">Enter Our World ✨</button>
     </div>
 
+    <!-- Main App Header -->
     <div class="header">
-        <span>🌸 My Love</span>
+        <span>🌸 Our Private Space</span>
         <div class="call-btns">
             <span class="call-btn" onclick="initiateCall('audio')">📞</span>
             <span class="call-btn" onclick="initiateCall('video')">📹</span>
         </div>
     </div>
 
+    <!-- Chat Messages -->
     <div id="chat-window"></div>
 
+    <!-- Chat Input -->
     <div class="input-box">
         <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
         <button id="send-btn">➔</button>
     </div>
 
-    <!-- Call UI -->
+    <!-- Video/Audio Call Screen -->
     <div id="call-screen">
         <video id="remote-video" autoplay playsinline></video>
         <video id="local-video" autoplay playsinline muted></video>
         <div class="call-controls">
-            <button class="end-call-btn" onclick="endCall()">📞</button>
+            <button class="end-call-btn" onclick="endCall()">📵</button>
         </div>
     </div>
 </div>
 
+<!-- Firebase SDK -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, push, onChildAdded, serverTimestamp, set, onValue, remove } 
+    import { getDatabase, ref, push, onChildAdded, serverTimestamp, set, onValue, remove, off } 
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
     const firebaseConfig = {
@@ -177,14 +191,17 @@
 
     let currentUser = "";
     let secretRoom = "";
-    let pc; // RTCPeerConnection
+    let pc; 
     let localStream;
+    let isCallActive = false;
 
     const servers = { iceServers: [{ urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'] }] };
 
+    // --- Authentication ---
     window.connectChat = function() {
         const user = document.getElementById('username').value.trim();
         const code = document.getElementById('love-code').value.trim();
+
         if (user && code) {
             currentUser = user;
             secretRoom = code;
@@ -192,10 +209,11 @@
             initChat();
             listenForCalls();
         } else {
-            alert("Please fill both details!");
+            alert("Please fill both name and secret code! 🌸");
         }
     }
 
+    // --- Messaging ---
     function initChat() {
         const chatRef = ref(db, 'messages/' + secretRoom);
         onChildAdded(chatRef, (snapshot) => {
@@ -205,118 +223,20 @@
     }
 
     function renderMessage(user, text) {
-        const win = document.getElementById('chat-window');
+        const window = document.getElementById('chat-window');
         const div = document.createElement('div');
         const isMe = user === currentUser;
         div.className = `msg-bubble ${isMe ? 'sent' : 'received'}`;
-        div.innerHTML = `<span class="user-tag">${isMe ? 'You' : user}</span><div>${text}</div>`;
-        win.appendChild(div);
-        win.scrollTop = win.scrollHeight;
+        div.innerHTML = `<span class="user-tag">${isMe ? 'You' : user}</span><div class="text">${text}</div>`;
+        window.appendChild(div);
+        window.scrollTop = window.scrollHeight;
     }
 
-    // --- CALLING LOGIC (WebRTC) ---
-
-    async function setupMedia(type) {
-        localStream = await navigator.mediaDevices.getUserMedia({ 
-            video: type === 'video', 
-            audio: true 
-        });
-        document.getElementById('local-video').srcObject = localStream;
-        document.getElementById('call-screen').style.display = 'flex';
-    }
-
-    window.initiateCall = async function(type) {
-        await setupMedia(type);
-        pc = new RTCPeerConnection(servers);
-        
-        localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-
-        pc.ontrack = (event) => {
-            document.getElementById('remote-video').srcObject = event.streams[0];
-        };
-
-        const offerDescription = await pc.createOffer();
-        await pc.setLocalDescription(offerDescription);
-
-        const callRef = ref(db, 'calls/' + secretRoom);
-        const offer = {
-            sdp: offerDescription.sdp,
-            type: offerDescription.type,
-            from: currentUser
-        };
-        await set(callRef, { offer });
-
-        // Listen for Answer
-        onValue(callRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data?.answer && !pc.currentRemoteDescription) {
-                const answerDescription = new RTCSessionDescription(data.answer);
-                pc.setRemoteDescription(answerDescription);
-            }
-        });
-
-        // ICE Candidates exchange
-        pc.onicecandidate = (event) => {
-            if (event.candidate) {
-                push(ref(db, `calls/${secretRoom}/candidates`), event.candidate.toJSON());
-            }
-        };
-    }
-
-    function listenForCalls() {
-        const callRef = ref(db, 'calls/' + secretRoom);
-        onValue(callRef, async (snapshot) => {
-            const data = snapshot.val();
-            if (data?.offer && data.offer.from !== currentUser) {
-                if (confirm(`${data.offer.from} is calling you. Accept?`)) {
-                    await setupMedia(data.offer.type === 'video' ? 'video' : 'audio');
-                    pc = new RTCPeerConnection(servers);
-                    
-                    localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-                    pc.ontrack = (event) => {
-                        document.getElementById('remote-video').srcObject = event.streams[0];
-                    };
-
-                    await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
-                    const answerDescription = await pc.createAnswer();
-                    await pc.setLocalDescription(answerDescription);
-
-                    const answer = {
-                        type: answerDescription.type,
-                        sdp: answerDescription.sdp
-                    };
-                    set(ref(db, `calls/${secretRoom}/answer`), answer);
-
-                    // Listen for candidates
-                    onChildAdded(ref(db, `calls/${secretRoom}/candidates`), (snapshot) => {
-                        const candidate = new RTCIceCandidate(snapshot.val());
-                        pc.addIceCandidate(candidate);
-                    });
-                }
-            }
-        });
-    }
-
-    window.endCall = function() {
-        if (localStream) {
-            localStream.getTracks().forEach(track => track.stop());
-        }
-        if (pc) pc.close();
-        document.getElementById('call-screen').style.display = 'none';
-        remove(ref(db, 'calls/' + secretRoom));
-        location.reload(); // Simple way to reset state
-    }
-
-    // Message sending logic
     function sendMessage() {
         const input = document.getElementById('message-input');
         const text = input.value.trim();
         if (text !== "") {
-            push(ref(db, 'messages/' + secretRoom), {
-                user: currentUser,
-                text: text,
-                time: serverTimestamp()
-            });
+            push(ref(db, 'messages/' + secretRoom), { user: currentUser, text: text, time: serverTimestamp() });
             input.value = "";
         }
     }
@@ -324,6 +244,116 @@
     document.getElementById('send-btn').onclick = sendMessage;
     document.getElementById('message-input').onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
 
+    // --- Calling Logic (WebRTC) ---
+
+    async function setupMedia(type) {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ 
+                video: type === 'video', 
+                audio: true 
+            });
+            document.getElementById('local-video').srcObject = localStream;
+            document.getElementById('call-screen').style.display = 'flex';
+            isCallActive = true;
+        } catch (err) {
+            alert("Please allow Camera/Microphone access! 🎥");
+            console.error(err);
+        }
+    }
+
+    window.initiateCall = async function(type) {
+        if (isCallActive) return;
+        await setupMedia(type);
+        
+        pc = new RTCPeerConnection(servers);
+        localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+
+        pc.ontrack = (event) => {
+            document.getElementById('remote-video').srcObject = event.streams[0];
+        };
+
+        pc.onicecandidate = (event) => {
+            if (event.candidate) {
+                push(ref(db, `calls/${secretRoom}/candidates`), event.candidate.toJSON());
+            }
+        };
+
+        const offerDescription = await pc.createOffer();
+        await pc.setLocalDescription(offerDescription);
+
+        await set(ref(db, 'calls/' + secretRoom), {
+            offer: { sdp: offerDescription.sdp, type: offerDescription.type, from: currentUser, callType: type }
+        });
+
+        // Listen for Answer
+        onValue(ref(db, `calls/${secretRoom}/answer`), (snapshot) => {
+            const data = snapshot.val();
+            if (data && !pc.currentRemoteDescription) {
+                pc.setRemoteDescription(new RTCSessionDescription(data));
+            }
+        });
+    }
+
+    function listenForCalls() {
+        const callRef = ref(db, 'calls/' + secretRoom);
+        onValue(callRef, async (snapshot) => {
+            const data = snapshot.val();
+            // Agar pehle se call active hai ya koi offer nahi hai, toh ignore karein
+            if (isCallActive || !data?.offer || data.offer.from === currentUser) return;
+
+            isCallActive = true; // Mark as active immediately to block loop
+            
+            if (confirm(`${data.offer.from} is calling you. Accept?`)) {
+                await setupMedia(data.offer.callType);
+                pc = new RTCPeerConnection(servers);
+                
+                localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+                pc.ontrack = (event) => {
+                    document.getElementById('remote-video').srcObject = event.streams[0];
+                };
+
+                pc.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        push(ref(db, `calls/${secretRoom}/candidates`), event.candidate.toJSON());
+                    }
+                };
+
+                await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
+                const answerDescription = await pc.createAnswer();
+                await pc.setLocalDescription(answerDescription);
+
+                await set(ref(db, `calls/${secretRoom}/answer`), {
+                    type: answerDescription.type,
+                    sdp: answerDescription.sdp
+                });
+
+                // Candidates listen
+                onChildAdded(ref(db, `calls/${secretRoom}/candidates`), (snapshot) => {
+                    if (pc && pc.remoteDescription) {
+                        pc.addIceCandidate(new RTCIceCandidate(snapshot.val()));
+                    }
+                });
+            } else {
+                isCallActive = false;
+                remove(ref(db, 'calls/' + secretRoom));
+            }
+        });
+    }
+
+    window.endCall = function() {
+        isCallActive = false;
+        if (localStream) localStream.getTracks().forEach(track => track.stop());
+        if (pc) pc.close();
+        
+        // Database cleanup
+        remove(ref(db, 'calls/' + secretRoom));
+        
+        document.getElementById('call-screen').style.display = 'none';
+        // Reset the app state
+        setTimeout(() => location.reload(), 500);
+    }
+
 </script>
+
 </body>
 </html>
